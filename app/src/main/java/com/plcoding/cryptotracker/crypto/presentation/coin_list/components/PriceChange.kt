@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -20,11 +21,14 @@ import androidx.compose.ui.unit.dp
 import com.plcoding.cryptotracker.crypto.presentation.model.DisplayableNumber
 import com.plcoding.cryptotracker.ui.theme.CryptoTrackerTheme
 import com.plcoding.cryptotracker.ui.theme.greenBackground
+import com.plcoding.cryptotracker.ui.theme.rememberAppTypography
+import com.plcoding.cryptotracker.util.AutoSizeText
 
 @Composable
 fun PriceChange(
     change: DisplayableNumber,
     modifier: Modifier = Modifier) {
+    val typography = rememberAppTypography()
     val textColor = if (change.value < 0.0){
         MaterialTheme.colorScheme.onErrorContainer
     }
@@ -47,7 +51,8 @@ fun PriceChange(
     Row(modifier = modifier
         .clip(RoundedCornerShape(100f))
         .background(backgroundColor)
-        .padding(horizontal = 8.dp, vertical = 4.dp)) {
+        .padding(horizontal = 8.dp, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically) {
         Icon(
             imageVector = if (change.value < 0.0) {
                 Icons.Default.KeyboardArrowDown
@@ -61,6 +66,13 @@ fun PriceChange(
             null,
             modifier = Modifier.size(20.dp),
             tint = textColor
+        )
+        AutoSizeText(
+            modifier = modifier.padding(horizontal = 10.dp),
+            text = change.formatted,
+            adaptiveStyle = typography.bodyMedium,
+            maxLines = 1,
+            color = textColor
         )
     }
 }
@@ -98,7 +110,7 @@ private fun PriceChangeUpPreview() {
         PriceChange(
             change = DisplayableNumber(
                 value = 10.0,
-                formatted = "10.00"
+                formatted = "+10.00"
             )
         )
     }
