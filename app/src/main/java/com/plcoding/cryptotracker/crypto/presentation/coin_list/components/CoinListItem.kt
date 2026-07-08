@@ -60,7 +60,7 @@ fun CoinListItem(
             verticalArrangement = Arrangement.Center) {
             AutoSizeText(
                 text = coinUI.symbol,
-                adaptiveStyle = typography.bodyLarge,
+                adaptiveStyle = typography.headlineMedium,
                 maxLines = 1,
                 color = textColor
             )
