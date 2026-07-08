@@ -69,7 +69,7 @@ fun PriceChange(
         )
         AutoSizeText(
             modifier = modifier.padding(horizontal = 10.dp),
-            text = change.formatted,
+            text = "${change.formatted} %",
             adaptiveStyle = typography.bodyMedium,
             maxLines = 1,
             color = textColor
