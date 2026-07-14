@@ -17,9 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.plcoding.cryptotracker.crypto.presentation.model.DisplayableNumber
 import com.plcoding.cryptotracker.ui.theme.CryptoTrackerTheme
+import com.plcoding.cryptotracker.ui.theme.dimens
 import com.plcoding.cryptotracker.ui.theme.greenBackground
 import com.plcoding.cryptotracker.ui.theme.rememberAppTypography
 import com.plcoding.cryptotracker.util.AutoSizeText
@@ -51,7 +51,7 @@ fun PriceChange(
     Row(modifier = modifier
         .clip(RoundedCornerShape(100f))
         .background(backgroundColor)
-        .padding(horizontal = 8.dp, vertical = 4.dp),
+        .padding(horizontal = MaterialTheme.dimens.spaceSmall, vertical = MaterialTheme.dimens.spaceExtraSmall),
         verticalAlignment = Alignment.CenterVertically) {
         Icon(
             imageVector = if (change.value < 0.0) {
@@ -64,11 +64,11 @@ fun PriceChange(
                 Icons.Default.KeyboardArrowUp
             },
             null,
-            modifier = Modifier.size(20.dp),
+            modifier = Modifier.size(MaterialTheme.dimens.priceChangeIconSize),
             tint = textColor
         )
         AutoSizeText(
-            modifier = modifier.padding(horizontal = 10.dp),
+            modifier = modifier.padding(horizontal = MaterialTheme.dimens.spaceMediumSmall),
             text = "${change.formatted} %",
             adaptiveStyle = typography.bodyMedium,
             maxLines = 1,

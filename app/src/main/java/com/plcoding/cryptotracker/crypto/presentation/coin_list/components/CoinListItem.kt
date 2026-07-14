@@ -21,11 +21,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.plcoding.cryptotracker.crypto.domain.Coin
 import com.plcoding.cryptotracker.crypto.presentation.model.CoinUI
 import com.plcoding.cryptotracker.crypto.presentation.model.toCoinUI
 import com.plcoding.cryptotracker.ui.theme.CryptoTrackerTheme
+import com.plcoding.cryptotracker.ui.theme.dimens
 import com.plcoding.cryptotracker.ui.theme.rememberAppTypography
 import com.plcoding.cryptotracker.util.AutoSizeText
 
@@ -46,14 +46,14 @@ fun CoinListItem(
             .fillMaxWidth()
             .wrapContentHeight()
             .clickable(onClick = onClick)
-            .padding(16.dp),
+            .padding(MaterialTheme.dimens.spaceMedium),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+        horizontalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceMedium)) {
         Icon(
             imageVector = ImageVector.vectorResource(id = coinUI.iconRes),
             contentDescription = coinUI.name,
             tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(85.dp)
+            modifier = Modifier.size(MaterialTheme.dimens.coinIconSize)
         )
         Column(
             modifier = Modifier.weight(1f),
@@ -79,7 +79,7 @@ fun CoinListItem(
                 maxLines = 1,
                 color = textColor
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceSmall))
             PriceChange(
                 change = coinUI.changePercent24HR
             )

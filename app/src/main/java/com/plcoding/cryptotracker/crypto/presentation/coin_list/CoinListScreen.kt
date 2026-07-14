@@ -14,10 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.components.CoinListItem
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.components.previewCoin
 import com.plcoding.cryptotracker.ui.theme.CryptoTrackerTheme
+import com.plcoding.cryptotracker.ui.theme.dimens
 
 @Composable
 fun CoinListScreen(state: CoinListState, modifier: Modifier = Modifier) {
@@ -31,7 +31,7 @@ fun CoinListScreen(state: CoinListState, modifier: Modifier = Modifier) {
     else {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy((8.dp))) {
+            verticalArrangement = Arrangement.spacedBy(MaterialTheme.dimens.spaceSmall)) {
             items(state.coinList) { coinUI ->
                 CoinListItem(
                     coinUI = coinUI,
