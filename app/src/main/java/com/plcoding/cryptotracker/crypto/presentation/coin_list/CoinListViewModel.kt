@@ -2,8 +2,8 @@ package com.plcoding.cryptotracker.crypto.presentation.coin_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.plcoding.cryptotracker.core.domain.util.onError
-import com.plcoding.cryptotracker.core.domain.util.onSuccess
+import com.qjirapong.network.onError
+import com.qjirapong.network.onSuccess
 import com.plcoding.cryptotracker.crypto.domain.CoinDataSource
 import com.plcoding.cryptotracker.crypto.presentation.model.toCoinUI
 import kotlinx.coroutines.flow.MutableStateFlow

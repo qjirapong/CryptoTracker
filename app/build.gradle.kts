@@ -63,7 +63,7 @@ dependencies {
 
     implementation(libs.bundles.koin)
 
-    implementation(libs.bundles.ktor)
+    implementation(project(":core:network"))
 
     testImplementation(libs.junit)
 
