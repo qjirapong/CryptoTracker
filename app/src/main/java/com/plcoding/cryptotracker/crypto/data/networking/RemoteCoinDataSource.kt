@@ -16,7 +16,7 @@ class RemoteCoinDataSource (private val httpClient: HttpClient): CoinDataSource 
     override suspend fun getCoinList(): NetworkResult<List<Coin>, NetworkError> {
         return safeCall<CoinListResponseDto> {
             httpClient.get(
-                urlString = constructURL("/assets", baseUrl = "https://api.coincap.io/v2/")
+                urlString = constructURL("/assets", baseUrl = "https://rest.coincap.io/v3/")
             )
         }.map { responseDto ->
             responseDto.data.map { it.toCoin() }
