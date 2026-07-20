@@ -12,7 +12,7 @@ import org.koin.dsl.module
 
 val appModule = module {
     single {
-        HTTPClientFactory.create(CIO.create())
+        HTTPClientFactory.create(CIO.create(), authToken = "5a086848684be24749a5d00f56b57498def81d8eb001b1bcfd118229b7f151fd")
     }
     singleOf(::RemoteCoinDataSource).bind<CoinDataSource>()
     viewModelOf(::CoinListViewModel)
