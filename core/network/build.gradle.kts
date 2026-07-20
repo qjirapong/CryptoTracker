@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -47,6 +49,17 @@ dependencies {
 }
 
 afterEvaluate {
+    val localProperties = Properties().apply {
+        val localPropertiesFile = rootProject.file("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use { load(it) }
+        }
+    }
+
+    val githubActor = localProperties.getProperty("gpts.github.actor") ?: ""
+
+    val githubToken = localProperties.getProperty("gpts.github.token") ?: ""
+
     publishing {
         publications {
             register<MavenPublication>("release") {
@@ -62,8 +75,8 @@ afterEvaluate {
                 name = "GitHubPackages"
                 url = uri("https://maven.pkg.github.com/qjirapong/CryptoTracker")
                 credentials {
-                    username = System.getenv("GITHUB_ACTOR") ?: ""
-                    password = System.getenv("GITHUB_TOKEN") ?: ""
+                    username = githubActor
+                    password = githubToken
                 }
             }
         }
