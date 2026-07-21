@@ -15,9 +15,6 @@ suspend inline fun <reified T> responseToResult(response: HttpResponse): Network
             catch (e: NoTransformationFoundException){
                 NetworkResult.Error(NetworkError.SERIALIZATION)
             }
-            try {
-                NetworkResult.Success(response.body<T>())
-            }
             catch (e: SerializationException) {
                 NetworkResult.Error(NetworkError.SERIALIZATION)
             }
