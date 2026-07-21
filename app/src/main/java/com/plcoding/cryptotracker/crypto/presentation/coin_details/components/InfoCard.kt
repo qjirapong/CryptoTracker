@@ -66,26 +66,28 @@ fun InfoCard(title: String,
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)) { text ->
-            AutoSizeText(,
+            AutoSizeText(
                 text = text,
                 adaptiveStyle = formattedTextStyle,
+                alignment = Alignment.Center,
                 color = contentColor,
                 maxLines = 1,
                 softWrap = false,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
+                    .fillMaxWidth()
                     .padding(horizontal = MaterialTheme.dimens.spaceSmall)
-                    .align(Alignment.CenterHorizontally)
             )
         }
         Spacer(modifier = Modifier.padding(MaterialTheme.dimens.spaceSmall))
         AutoSizeText(
             text = title,
             adaptiveStyle = rememberAppTypography().bodySmall,
+            alignment = Alignment.Center,
             color = contentColor,
             maxLines = 1,
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
+                .fillMaxWidth()
                 .padding(horizontal = MaterialTheme.dimens.spaceSmall)
                 .padding(bottom = MaterialTheme.dimens.spaceSmall)
         )
