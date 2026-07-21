@@ -42,7 +42,7 @@ fun Dp.toTextUnit(): TextUnit {
 
 data class AdaptiveTextStyle(
     val style: TextStyle,
-    val minFontSize: TextUnit = TextUnit.Unspecified,
+    val minFontSize: TextUnit = (style.fontSize.value / 2).sp,
     val maxFontSize: TextUnit = style.fontSize
 )
 
