@@ -43,6 +43,11 @@ fun Double.toDisplayableNumber(): DisplayableNumber {
     }
     return DisplayableNumber(
         value = this,
-        formatted = formatter.format(this)
+        formatted = if (this > 0.0){
+            "+${formatter.format(this)}"
+        }
+        else{
+            formatter.format(this)
+        }
     )
 }
