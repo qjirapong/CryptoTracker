@@ -14,7 +14,8 @@ data class Dimensions(
     
     // Component specific dimensions
     val coinIconSize: Dp = 85.dp,
-    val priceChangeIconSize: Dp = 20.dp
+    val priceChangeIconSize: Dp = 20.dp,
+    val priceChangeChipSize: Dp = 115.dp
 )
 
 val LocalDimensions = staticCompositionLocalOf { Dimensions() }
