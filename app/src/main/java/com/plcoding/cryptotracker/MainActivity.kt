@@ -46,7 +46,6 @@ class MainActivity : ComponentActivity() {
                 val state by viewModel.state.collectAsStateWithLifecycle()
                 
                 val context = LocalContext.current
-                val lifecycleOwner = LocalLifecycleOwner.current
                 val snackBarHostState = remember { SnackbarHostState() }
                 val typography = rememberAppTypography()
 
