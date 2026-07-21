@@ -32,8 +32,10 @@ import com.plcoding.cryptotracker.ui.theme.CryptoTrackerTheme
 import com.plcoding.cryptotracker.ui.theme.dimens
 import com.plcoding.cryptotracker.ui.theme.rememberAppTypography
 import com.plcoding.cryptotracker.util.AutoSizeText
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.withContext
 
 @Composable
 fun CoinListScreen(state: CoinListState,
@@ -47,13 +49,16 @@ fun CoinListScreen(state: CoinListState,
     LaunchedEffect(lifecycleOwner.lifecycle){
         //Listen to the event only when the lifecycle has been started
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-            events.collect { event ->
-                when(event){
-                    is CoinListEvent.Error -> {
-                        // Show error message via snackBarHostState
-                        snackBarHostState.showSnackbar(
-                            message = event.error.toUiText(context)
-                        )
+            //Ensure that it will actually collect the event.
+            withContext(Dispatchers.Main.immediate){
+                events.collect { event ->
+                    when(event){
+                        is CoinListEvent.Error -> {
+                            // Show error message via snackBarHostState
+                            snackBarHostState.showSnackbar(
+                                message = event.error.toUiText(context)
+                            )
+                        }
                     }
                 }
             }
