@@ -1,11 +1,9 @@
-package com.plcoding.cryptotracker.core.data.networking
+package com.qjirapong.network
 
-import com.plcoding.cryptotracker.core.domain.util.NetworkError
 import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import kotlinx.serialization.SerializationException
-import com.plcoding.cryptotracker.core.domain.util.NetworkResult
 
 suspend inline fun <reified T> responseToResult(response: HttpResponse): NetworkResult<T, NetworkError>{
     return when(response.status.value){
@@ -16,9 +14,6 @@ suspend inline fun <reified T> responseToResult(response: HttpResponse): Network
             }
             catch (e: NoTransformationFoundException){
                 NetworkResult.Error(NetworkError.SERIALIZATION)
-            }
-            try {
-                NetworkResult.Success(response.body<T>())
             }
             catch (e: SerializationException) {
                 NetworkResult.Error(NetworkError.SERIALIZATION)

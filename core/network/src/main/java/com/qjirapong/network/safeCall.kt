@@ -1,27 +1,29 @@
-package com.plcoding.cryptotracker.core.data.networking
+package com.qjirapong.network
 
-import com.plcoding.cryptotracker.core.domain.util.NetworkError
+import android.util.Log
 import io.ktor.client.statement.HttpResponse
-import com.plcoding.cryptotracker.core.domain.util.NetworkResult
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.serialization.SerializationException
 import java.nio.channels.UnresolvedAddressException
 
 suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): NetworkResult<T, NetworkError>{
-    val response = try {
-        execute()
+    return try {
+        val response = execute()
+        responseToResult(response)
     }
     catch (e: UnresolvedAddressException) {
-        return NetworkResult.Error(NetworkError.NO_INTERNET)
+        Log.e("safeCall", "UnresolvedAddressException: ${e.message}", e)
+        NetworkResult.Error(NetworkError.NO_INTERNET)
     }
     catch (e: SerializationException){
-        return NetworkResult.Error(NetworkError.SERIALIZATION)
+        Log.e("safeCall", "SerializationException: ${e.message}", e)
+        NetworkResult.Error(NetworkError.SERIALIZATION)
     }
     catch (e: Exception){
+        Log.e("safeCall", "Unknown exception: ${e.message}", e)
         //Make sure that Coroutine isn't cancelled
         currentCoroutineContext().ensureActive()
-        return NetworkResult.Error(NetworkError.UNKNOWN)
+        NetworkResult.Error(NetworkError.UNKNOWN)
     }
-    return responseToResult(response)
 }

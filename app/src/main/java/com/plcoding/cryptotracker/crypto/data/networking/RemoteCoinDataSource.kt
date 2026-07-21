@@ -1,10 +1,10 @@
 package com.plcoding.cryptotracker.crypto.data.networking
 
-import com.plcoding.cryptotracker.core.data.networking.constructURL
-import com.plcoding.cryptotracker.core.data.networking.safeCall
-import com.plcoding.cryptotracker.core.domain.util.NetworkError
-import com.plcoding.cryptotracker.core.domain.util.NetworkResult
-import com.plcoding.cryptotracker.core.domain.util.map
+import com.qjirapong.network.NetworkError
+import com.qjirapong.network.NetworkResult
+import com.qjirapong.network.map
+import com.qjirapong.network.constructURL
+import com.qjirapong.network.safeCall
 import com.plcoding.cryptotracker.crypto.data.mappers.toCoin
 import com.plcoding.cryptotracker.crypto.data.networking.response.CoinListResponseDto
 import com.plcoding.cryptotracker.crypto.domain.Coin
@@ -16,7 +16,7 @@ class RemoteCoinDataSource (private val httpClient: HttpClient): CoinDataSource 
     override suspend fun getCoinList(): NetworkResult<List<Coin>, NetworkError> {
         return safeCall<CoinListResponseDto> {
             httpClient.get(
-                urlString = constructURL("/assets")
+                urlString = constructURL("/assets", baseUrl = "https://rest.coincap.io/v3/")
             )
         }.map { responseDto ->
             responseDto.data.map { it.toCoin() }
