@@ -11,7 +11,7 @@ data class ChartStyle(
     val helperLinesThicknessPx: Float,
     val axisLinesThicknessPx: Float,
     val labelFontSize: TextUnit,
-    val minLabelSpacing: Dp,
+    val minYLabelSpacing: Dp,
     val verticalPadding: Dp,
     val horizontalPadding: Dp,
     val xAxisLabelSpacing: Dp
