@@ -4,7 +4,9 @@ package com.plcoding.cryptotracker.crypto.presentation.coin_details.components
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -36,15 +38,14 @@ fun InfoCard(title: String,
              formattedTextStyle: AdaptiveTextStyle = rememberAppTypography().bodyMedium,
              modifier: Modifier = Modifier) {
     Card(modifier = modifier
-        .width(MaterialTheme.dimens.boxSize)
-        .padding(MaterialTheme.dimens.spaceSmall)
+        .padding(MaterialTheme.dimens.spaceMediumSmall)
         .shadow(elevation = MaterialTheme.dimens.spaceSmall,
             shape = RectangleShape,
             ambientColor = MaterialTheme.colorScheme.primary,
             spotColor = MaterialTheme.colorScheme.primary),
         shape = RectangleShape,
         border = BorderStroke(
-            width = MaterialTheme.dimens.spaceExtraSmall,
+            width = MaterialTheme.dimens.spaceExtraSmall / 4,
             color = MaterialTheme.colorScheme.primary),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceContainer,
@@ -79,7 +80,7 @@ fun InfoCard(title: String,
                     .padding(horizontal = MaterialTheme.dimens.spaceSmall)
             )
         }
-        Spacer(modifier = Modifier.padding(MaterialTheme.dimens.spaceSmall))
+        Spacer(modifier = Modifier.height(MaterialTheme.dimens.spaceSmall))
         AutoSizeText(
             text = title,
             adaptiveStyle = rememberAppTypography().bodySmall,
@@ -88,8 +89,9 @@ fun InfoCard(title: String,
             maxLines = 1,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = MaterialTheme.dimens.spaceSmall)
-                .padding(bottom = MaterialTheme.dimens.spaceSmall)
+                .align(Alignment.CenterHorizontally)
+                .padding(horizontal = MaterialTheme.dimens.spaceMediumSmall)
+                .padding(bottom = MaterialTheme.dimens.spaceMediumSmall)
         )
     }
 }
