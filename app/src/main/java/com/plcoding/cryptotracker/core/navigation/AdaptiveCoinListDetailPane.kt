@@ -1,6 +1,7 @@
 package com.plcoding.cryptotracker.core.navigation
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
@@ -33,12 +34,12 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun AdaptiveCoinListDetailPane(
     modifier: Modifier = Modifier,
-    viewModel: CoinListViewModel = koinViewModel()
-) {
+    viewModel: CoinListViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val snackBarHostState = remember { SnackbarHostState() }
     val typography = rememberAppTypography()
+    val lazyListState = rememberLazyListState()
 
     ObserveAsEvents(events = viewModel.events) { event ->
         when (event) {
@@ -77,6 +78,7 @@ fun AdaptiveCoinListDetailPane(
                 AnimatedPane {
                     CoinListScreen(
                         state = state,
+                        lazyListState = lazyListState,
                         modifier = Modifier.padding(innerPadding),
                         onAction = { action ->
                             viewModel.onAction(action)

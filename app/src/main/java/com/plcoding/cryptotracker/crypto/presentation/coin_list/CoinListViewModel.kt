@@ -60,6 +60,7 @@ class CoinListViewModel(private val coinDataSource: CoinDataSource): ViewModel()
     }
 
     private fun loadCoinList(){
+        if (_state.value.coinList.isNotEmpty()) return
         viewModelScope.launch{
             _state.update { it.copy(isLoading = true) }
             coinDataSource.getCoinList()
@@ -73,8 +74,7 @@ class CoinListViewModel(private val coinDataSource: CoinDataSource): ViewModel()
             }.onError { error ->
                 _state.update {
                     it.copy(
-                        isLoading = false,
-                        coinList = emptyList()
+                        isLoading = false
                     )
                 }
                 //Send it once, with error details. No sending even if it's config changes.
