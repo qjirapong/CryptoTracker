@@ -26,6 +26,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.plcoding.cryptotracker.core.presentation.util.ObserveAsEvents
 import com.plcoding.cryptotracker.core.presentation.util.toUiText
+import com.plcoding.cryptotracker.crypto.presentation.coin_details.CoinDetailsScreen
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.CoinListEvent
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.CoinListScreen
 import com.plcoding.cryptotracker.crypto.presentation.coin_list.CoinListState
@@ -78,10 +79,21 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                     modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CoinListScreen(
-                        state = state,
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    when(state.selectedCoin) {
+                        null -> {
+                            CoinListScreen(
+                                state = state,
+                                modifier = Modifier.padding(innerPadding),
+                                onAction = viewModel::onAction
+                            )
+                        }
+                        else -> {
+                            CoinDetailsScreen(
+                                state = state,
+                                modifier = Modifier.padding(innerPadding)
+                            )
+                        }
+                    }
                 }
             }
         }
