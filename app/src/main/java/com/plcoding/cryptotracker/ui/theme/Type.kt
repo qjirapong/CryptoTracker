@@ -63,7 +63,7 @@ fun rememberAppTypography(): AppTypography {
                 fontWeight = FontWeight.Light,
                 fontSize = 12.dp.toTextUnit()
             ),
-            minFontSize = 8.dp.toTextUnit()
+            minFontSize = 6.dp.toTextUnit()
         ),
         bodyMedium = AdaptiveTextStyle(
             style = TextStyle(
@@ -71,17 +71,17 @@ fun rememberAppTypography(): AppTypography {
                 fontWeight = FontWeight.Normal,
                 fontSize = 14.dp.toTextUnit()
             ),
-            minFontSize = 10.dp.toTextUnit()
+            minFontSize = 7.dp.toTextUnit()
         ),
         bodyLarge = AdaptiveTextStyle(
             style = TextStyle(
                 fontFamily = SpaceMono,
                 fontWeight = FontWeight.Normal,
-                fontSize = 16.dp.toTextUnit(),
+                fontSize = 24.dp.toTextUnit(),
                 lineHeight = 24.dp.toTextUnit(),
                 letterSpacing = 0.5.dp.toTextUnit()
             ),
-            minFontSize = 11.dp.toTextUnit()
+            minFontSize = 12.dp.toTextUnit()
         ),
         labelMedium = AdaptiveTextStyle(
             style = TextStyle(
@@ -95,9 +95,9 @@ fun rememberAppTypography(): AppTypography {
             style = TextStyle(
                 fontFamily = SpaceMono,
                 fontWeight = FontWeight.Bold,
-                fontSize = 18.dp.toTextUnit()
+                fontSize = 36.dp.toTextUnit()
             ),
-            minFontSize = 12.dp.toTextUnit()
+            minFontSize = 18.dp.toTextUnit()
         )
     )
 }
